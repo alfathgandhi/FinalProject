@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android" >
+    <data class="ListNegaraBinding">
+
+        <variable
+            name="listnegaramodel"
+            type="com.d3if0093.dollareuroexcange.viewmodel.ExchangeViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/list_word_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:orientation="vertical"
+        android:layout_margin="8dp"
+
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/bendera"
+                android:background="@android:color/transparent"
+                android:layout_width="100dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center_vertical"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/negara"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp" />
+
+
+                <TextView
+                    android:id="@+id/mataUang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kurs"
+                    android:textSize="25sp"
+                    android:textColor="@android:color/white"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp" />
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

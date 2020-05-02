@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"  >
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainFragment"
+    >
+
+     TODO: Update blank fragment layout
+  <androidx.recyclerview.widget.RecyclerView
+      android:visibility="gone"
+      android:id="@+id/list"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:listitem="@layout/excange_list"
+      app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+      />
+
+      <TextView
+
+   android:id="@+id/us"
+    android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/mohon_chwck_kembali_koneksi_internet_anda"
+          app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20sp"
+          android:gravity="center_horizontal" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/idr"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/usd"-->
+<!--        android:textSize="30sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/us"-->
+<!--        android:layout_marginBottom="200dp"-->
+
+<!--         />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
