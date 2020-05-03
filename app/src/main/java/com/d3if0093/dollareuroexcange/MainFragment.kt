@@ -57,10 +57,10 @@ private lateinit var viewModel:ExchangeViewModel
 
 
         val application = requireNotNull(this.activity).application
-        val dataSource=ListNegaraDatabase.getInstance(application).ListNegaraDAO
+
 
         val viewModelFactory = ExchangeViewModelFactory(
-            dataSource,
+
             application
         )
 
@@ -89,20 +89,20 @@ private lateinit var viewModel:ExchangeViewModel
             }
         })
 
-        viewModel.dataApi.observe(viewLifecycleOwner, Observer {
-        kurs->
-            var adapter = MyAdapter(kurs)
-            binding.list.adapter =adapter
+
 
 
 
             viewModel.dataNya?.observe(viewLifecycleOwner, Observer{
+
+                var adapter = MyAdapter()
+                binding.list.adapter =adapter
                 it?.let{
                     adapter.data = it
 
                 }
 
-            })
+
 
 
 

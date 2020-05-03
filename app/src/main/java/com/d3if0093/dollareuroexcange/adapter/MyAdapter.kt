@@ -10,10 +10,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.d3if0093.dollareuroexcange.R
 import com.d3if0093.dollareuroexcange.`object`.Kurs
+import com.d3if0093.dollareuroexcange.`object`.Negara
 import com.d3if0093.dollareuroexcange.database.ListNegara
 
 class MyAdapter(
-private var kurs:Kurs
+
 ):RecyclerView.Adapter<MyAdapter.ViewHolder>(){
 
 
@@ -22,7 +23,7 @@ private var kurs:Kurs
 
 
 
-    var data = listOf<ListNegara>()
+    var data = listOf<Negara>()
     set(value) {
         field = value
         notifyDataSetChanged()
@@ -53,15 +54,8 @@ private var kurs:Kurs
        val item = data[position]
         holder.bendera.setImageResource(item.pict)
         holder.negara.text = item.negara
-      val valueNya=when(item.mataUang){
-        "SGD" -> kurs.rates?.SGD.toString()
-        "EUR" -> kurs.rates?.EUR.toString()
-        "USD" -> kurs.rates?.USD.toString()
-        "JPY" -> kurs.rates?.JPY.toString()
-        "AUD" -> kurs.rates?.AUD.toString()
-        "CNY" -> kurs.rates?.CNY.toString()
-        "GBP" -> kurs.rates?.GBP.toString()
-     else -> kurs.rates?.IDR.toString() }
+      val valueNya=item.value
+
         holder.mataUang.text =valueNya+" "+item.mataUang
     }
 
