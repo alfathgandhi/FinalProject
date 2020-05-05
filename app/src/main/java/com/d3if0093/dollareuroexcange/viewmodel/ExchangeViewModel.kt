@@ -4,14 +4,10 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.d3if0093.dollareuroexcange.`object`.Kurs
-import com.d3if0093.dollareuroexcange.api.ListNegaraApi
-import com.d3if0093.dollareuroexcange.database.ListNegara
-import com.d3if0093.dollareuroexcange.database.ListNegaraDAO
 import com.d3if0093.dollareuroexcange.database.ListNegaraDatabase.Companion.getInstance
 import com.d3if0093.dollareuroexcange.repository.DataRepository
 import kotlinx.coroutines.*
-import retrofit2.*
+
 
 class ExchangeViewModel(application: Application):AndroidViewModel(application) {
 
@@ -43,16 +39,21 @@ class ExchangeViewModel(application: Application):AndroidViewModel(application) 
 
 
 
-    viewModelScope.launch {
-        dataRepository.refreshData()
 
-
-    }
 
 
 
 }
-    val dataNya=dataRepository.listNegara
+    val dataNya=dataRepository.getListNegara()
+
+    fun refresh(){
+        viewModelScope.launch {
+             dataRepository.refreshData()
+
+
+        }
+
+    }
 
     override fun onCleared() {
         super.onCleared()

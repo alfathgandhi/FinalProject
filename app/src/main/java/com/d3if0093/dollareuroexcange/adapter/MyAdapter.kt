@@ -9,8 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.d3if0093.dollareuroexcange.R
-import com.d3if0093.dollareuroexcange.`object`.Kurs
-import com.d3if0093.dollareuroexcange.`object`.Negara
 import com.d3if0093.dollareuroexcange.database.ListNegara
 
 class MyAdapter(
@@ -18,12 +16,12 @@ class MyAdapter(
 ):RecyclerView.Adapter<MyAdapter.ViewHolder>(){
 
 
+var listener:RecycleListClickListener?=null
 
 
 
 
-
-    var data = listOf<Negara>()
+    var data = listOf<ListNegara>()
     set(value) {
         field = value
         notifyDataSetChanged()
@@ -55,8 +53,8 @@ class MyAdapter(
         holder.bendera.setImageResource(item.pict)
         holder.negara.text = item.negara
       val valueNya=item.value
-
         holder.mataUang.text =valueNya+" "+item.mataUang
+        holder
     }
 
     class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){

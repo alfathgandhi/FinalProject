@@ -9,6 +9,7 @@ import androidx.room.OnConflictStrategy
 
 @Dao
 interface ListNegaraDAO {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(listNegara:ListNegara)
 

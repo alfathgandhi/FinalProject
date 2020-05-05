@@ -1,34 +1,28 @@
 package com.d3if0093.dollareuroexcange.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
+
 import com.d3if0093.dollareuroexcange.R
-import com.d3if0093.dollareuroexcange.`object`.Kurs
-import com.d3if0093.dollareuroexcange.`object`.Negara
 import com.d3if0093.dollareuroexcange.`object`.Rates
 import com.d3if0093.dollareuroexcange.api.ListNegaraApi
 import com.d3if0093.dollareuroexcange.database.ListNegara
-import com.d3if0093.dollareuroexcange.database.ListNegaraDAO
 import com.d3if0093.dollareuroexcange.database.ListNegaraDatabase
-import com.d3if0093.dollareuroexcange.database.asDomainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.await
 
 class DataRepository(private val database:ListNegaraDatabase){
-    val listNegara: LiveData<List<Negara>>? =
-        Transformations.map(database.ListNegaraDAO.getData()){
-            it.asDomainModel()
+   fun getListNegara() :LiveData<List<ListNegara>>{
 
-    }
-    val kacau=false
+          return database.ListNegaraDAO.getData()
+      }
+
 
     suspend fun refreshData(){
         withContext(Dispatchers.IO){
             val call = ListNegaraApi.retrofitService.getAll().await()
+
+
 
 
 

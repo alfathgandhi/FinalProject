@@ -2,10 +2,12 @@ package com.d3if0093.dollareuroexcange
 
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import androidx.core.view.isVisible
+import android.widget.Toast
 
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
@@ -14,16 +16,16 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 
-import com.d3if0093.dollareuroexcange.`object`.Kurs
 import com.d3if0093.dollareuroexcange.`object`.Rates
 import com.d3if0093.dollareuroexcange.adapter.MyAdapter
 
 
-import com.d3if0093.dollareuroexcange.database.ListNegaraDatabase
-
 import com.d3if0093.dollareuroexcange.databinding.FragmentMainBinding
 import com.d3if0093.dollareuroexcange.viewmodel.ExchangeViewModel
 import com.d3if0093.dollareuroexcange.viewmodel.ExchangeViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import okhttp3.Dispatcher
 
 
 /**
@@ -51,6 +53,8 @@ private lateinit var viewModel:ExchangeViewModel
     ): View? {
 
 
+
+
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_main, container, false)
 
@@ -76,24 +80,23 @@ private lateinit var viewModel:ExchangeViewModel
 //        ApiRespone()
 
         setHasOptionsMenu(true)
+        if(isNetworkConnected(activity=MainActivity())){
+            viewModel.refresh()
+
+
+        }else{
+            Toast.makeText(activity,"Internet is not found. Showing cached data list", Toast.LENGTH_LONG).show()
+        }
+
+
 
         return binding.root }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        viewModel.gagal.observe(viewLifecycleOwner, Observer {
 
-            if(it==true){
-                binding.us.visibility=View.VISIBLE
-            }
-        })
-
-
-
-
-
-            viewModel.dataNya?.observe(viewLifecycleOwner, Observer{
+        viewModel.dataNya?.observe(viewLifecycleOwner, Observer{
 
                 var adapter = MyAdapter()
                 binding.list.adapter =adapter
@@ -101,11 +104,6 @@ private lateinit var viewModel:ExchangeViewModel
                     adapter.data = it
 
                 }
-
-
-
-
-
 
         })
 
@@ -124,6 +122,7 @@ private lateinit var viewModel:ExchangeViewModel
 
         super.onViewCreated(view, savedInstanceState)
     }
+
 
 //    private fun ApiRespone() {
 //
@@ -153,7 +152,12 @@ private lateinit var viewModel:ExchangeViewModel
 //        })
 //    }
 
-
+    fun isNetworkConnected(activity: MainActivity):Boolean
+    {
+        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork=cm.activeNetworkInfo
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting
+    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)

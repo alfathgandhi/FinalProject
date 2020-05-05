@@ -9,10 +9,19 @@
         android:id="@+id/mainFragment"
         android:name="com.d3if0093.dollareuroexcange.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_kalkukasi"
+            app:destination="@id/kalkukasi" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.d3if0093.dollareuroexcange.aboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/kalkukasi"
+        android:name="com.d3if0093.dollareuroexcange.Kalkukasi"
+        android:label="fragment_kalkukasi"
+        tools:layout="@layout/fragment_kalkukasi" />
 </navigation>
